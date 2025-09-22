@@ -1,0 +1,37 @@
+{% extends 'basic_app/base.html' %}
+
+{% block body_block %}
+
+<!-- Center the card on the page -->
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+
+        <!-- Card container for confirmation -->
+        <div class="card rounded shadow p-4 bg-light">
+
+            <!-- Confirmation message -->
+            <h3 class="text-center mb-4">
+                Are you sure you want to delete the task: "{{ task.title }}"?
+            </h3>
+
+            <!-- Delete confirmation form -->
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <!-- Buttons container: Yes (submit) and No (cancel) -->
+                <div class="d-flex justify-content-center gap-2">
+                    <!-- Submit button: confirms deletion -->
+                    <button type="submit" class="btn btn-danger w-45">Yes</button>
+
+                    <!-- Cancel button: redirects back to task list -->
+                    <a href="{% url 'basic_app:task_list' %}" class="btn btn-primary w-45 text-center">
+                        No
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock body_block %}

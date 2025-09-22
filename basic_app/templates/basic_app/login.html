@@ -1,0 +1,66 @@
+{% extends 'basic_app/base.html' %}
+
+{% block body_block %}
+
+<!-- Main container to center the login card -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <!-- Login card with shadow and rounded corners -->
+            <div class="card shadow-lg rounded-3">
+                <div class="card-body">
+
+                    <!-- Login form header -->
+                    <h2 class="card-title text-center mb-4">Login to Your Account</h2>
+
+                    <!-- Login form starts here -->
+                    <form method="POST" action="">
+                        {% csrf_token %}
+
+                        <!-- Username field -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input 
+                                type="text" 
+                                name="username" 
+                                id="username" 
+                                class="form-control" 
+                                placeholder="Enter your username" 
+                                required
+                            >
+                        </div>
+
+                        <!-- Password field -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                id="password" 
+                                class="form-control" 
+                                placeholder="Enter your password" 
+                                required
+                            >
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="d-grid">
+                            <input 
+                                type="submit" 
+                                value="Login" 
+                                class="btn btn-primary btn-lg"
+                            >
+                        </div>
+                    </form>
+                    <!-- End of login form -->
+
+                </div>
+            </div>
+            <!-- End of card -->
+
+        </div>
+    </div>
+</div>
+
+{% endblock body_block %}

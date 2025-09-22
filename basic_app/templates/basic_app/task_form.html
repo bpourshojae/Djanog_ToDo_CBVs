@@ -1,0 +1,52 @@
+{% extends 'basic_app/base.html' %}
+{% load widget_tweaks %}
+
+{% block body_block %}
+
+<!-- Center the card in the page -->
+<div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+
+        <!-- Card container for the form -->
+        <div class="card rounded shadow-sm p-4 bg-light">
+
+            <!-- Form for adding or updating task -->
+            <form action="{% url 'basic_app:addtask' %}" method="POST">
+                {% csrf_token %}
+
+                <!-- Title Field -->
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Title :</label>
+                    <!-- Apply Bootstrap class and make text bold -->
+                    {{ form.title|add_class:"form-control fw-bold" }}
+                </div>
+
+                <!-- Description Field -->
+                <div class="mb-3">
+                    <label for="id_description" class="form-label">Description :</label>
+                    {{ form.description|add_class:"form-control" }}
+                </div>
+
+                <!-- Submit and Cancel Buttons -->
+                {% if form.instance.pk %}
+                    <!-- Update mode -->
+                    <div class="d-flex justify-content-center gap-2">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{% url 'basic_app:task_list' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                {% else %}
+                    <!-- Create mode -->
+                    <div class="d-flex justify-content-center gap-2">
+                        <button type="submit" class="btn btn-success">Add Task</button>
+                        <a href="{% url 'basic_app:task_list' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                {% endif %}
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock body_block %}
+

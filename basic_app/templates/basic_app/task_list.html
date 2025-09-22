@@ -1,0 +1,38 @@
+{% extends 'basic_app/base.html' %}
+
+{% block body_block %}
+
+<div class="row mt-4">
+
+    {% for task in tasks %}
+    
+    <div class="col-12 col-md-4">
+
+        <!-- Card background color changes based on task status -->
+        <div class="card mb-3 shadow-sm {% if task.status %}bg-success bg-opacity-25{% else %}bg-warning bg-opacity-25{% endif %}">
+
+            <div class="card-body">
+
+                <!-- Task title -->
+                <h3 class="card-title text-center fw-bold">{{ task.title }}</h3>
+
+                <!-- Task description -->
+                <p class="card-text"><strong>Description:</strong> {{ task.description }}</p>
+
+                <!-- Task status displayed as Done / Pending -->
+                <p class="card-text"><strong>Status:</strong> {% if task.status %}Done{% else %}Pending{% endif %}</p>
+
+                <!-- Action buttons -->
+                <div class="d-flex justify-content-center gap-2 mt-3">
+                    <a href="{% url 'basic_app:delete' task.id %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'basic_app:updatetask' task.id %}" class="btn btn-primary">Update</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock body_block %}
